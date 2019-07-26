@@ -1,0 +1,516 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>EmoYak</title>
+		
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		
+		<!-- https://appsco.pe/developer/splash-screens -->
+		<!-- Feed it icon_512x512.png, aspect fill: #222222 -->
+		<link href="splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		
+		<!-- https://iconifier.net/index.php -->
+		<!-- Feed it the largest PNG you have, may need optimization to get it under 500K -->
+		<link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+		<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-touch-icon-57x57.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="icons/apple-touch-icon-72x72.png" />
+		<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="icons/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="icons/apple-touch-icon-144x144.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180x180.png" />
+		
+		<style>
+			:root {
+				--background-color: rgb(32, 32, 32);
+				--background-transparent-color: rgba(32, 32, 32, 0.0);
+				
+				--border-color: rgb(48, 48, 48);
+				
+				--header-background-color: rgb(24, 24, 24);
+				--footer-background-color: rgb(24, 24, 24);
+				--dialog-background-color: rgb(24, 24, 24);
+				--app-background-color: rgb(24, 24, 24);
+				
+				--header-text-color: rgb(128, 128, 128);
+				--body-text-color: rgb(170, 170, 170);
+				
+				--bubble-background-color: rgb(48, 48, 48);
+				--bubble-border-color: rgb(64, 64, 64);
+				--bubble-edited-color: rgb(128, 128, 0);
+				
+				--icon-color: rgb(96, 96, 96);
+				--highlight-color: #5890db;
+			}
+			
+			html { 
+				margin: 0;
+				padding: 0;
+			}
+			body { 
+				background-color: var(--background-color);
+				font-family: Helvetica, sans-serif; 
+				color: var(--body-text-color);
+				margin: 0;
+				padding: 0;
+			}
+			p {
+				margin: 0;
+			}
+			
+			h1 {
+				color: #5890DB;
+				font-size: 20px;
+				font-weight: bold;
+				margin-top: 0px;
+				margin-bottom: 0px;
+			}
+			h2 {
+				margin-top: 0px;
+				line-height: 20px;
+				font-size: 17px;
+				font-weight: normal;
+				color: var(--header-text-color);
+			}
+			h3 {
+				margin-top: 2px;
+				line-height: 20px;
+				font-size: 17px;
+				font-weight: normal;
+				color: var(--body-text-color);
+			}
+			
+			.instruction {
+				margin-top: 30px;
+			}
+			
+			.center-me {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				height: 100vh;
+			}
+			
+			#splash {
+				display: flex;
+				justify-content: center;
+				text-align: center;
+			}
+			
+			#app_content {
+				margin-top: 40px;
+			}
+			
+			div.info_label {
+				font-size: 15px;
+				font-weight: bold;
+				color: var(--header-text-color);
+				cursor: default;
+				text-transform: uppercase;
+			}
+			
+			div.info_value {
+				font-size: 17px;
+				margin-top: 1px;
+				margin-bottom: 10px;
+				font-weight: bold;
+				color: var(--body-text-color);
+			}
+			
+			input[type='file'] {
+				-webkit-appearence: none;
+				position: absolute; 
+				z-index: 2; 
+				left: -100%; 
+				width: 400%; 
+				height: 100%; 
+				opacity: 0
+			}
+			
+			/* Progress Bar */
+
+			@-webkit-keyframes progress { to { background-position: 30px 0; } }
+			@keyframes progress { to { background-position: 30px 0; } }
+
+			div.progress_bar_container {
+				position: relative;
+				width: 300px;
+				height: 18px;
+				background-color: var(--bubble-background-color);
+				border-radius: 10px;
+				overflow: hidden;
+			}
+			
+			div.progress_bar_inner {
+				height: 18px;
+				border-radius: 10px;
+				
+				background-color: var(--icon-color);
+				
+				-webkit-animation: progress 1s linear infinite;
+				animation: progress 1s linear infinite;
+				
+				background-repeat: repeat-x;
+				background-size: 30px 30px;
+				background-image: linear-gradient(-45deg, var(--bubble-border-color) 25%, transparent 25%, transparent 50%, var(--bubble-border-color) 50%, var(--bubble-border-color) 75%, transparent 75%, transparent);
+				
+				transition: width 0.5s ease;
+				-webkit-transition: width 0.5s ease;
+			}
+			
+			/* Preview */
+			
+			#d_img_preview {
+				text-align: center;
+			}
+			
+			#d_img_preview > img {
+				max-width: 100%;
+				max-height: 300px;
+			}
+			#d_img_preview > video {
+				max-width: 100%;
+				max-height: 300px;
+			}
+			
+			#fe_caption {
+				width: 100%;
+				height: 100px;
+			}
+			
+			textarea.form_input {
+				box-sizing: border-box;
+				font-size: 16px;
+				padding-left: 5px;
+				padding-right: 5px;
+				
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				resize: none;
+				
+				cursor: text;
+				outline: none;
+				border: 1px solid var(--bubble-border-color);
+				border-radius: 5px;
+				color: var(--body-text-color);
+				background-color: var(--bubble-background-color);
+			}
+			
+			div.button {
+				width: 120px;
+				height: 35px;
+				
+				background-color: var(--bubble-background-color);
+				border: 1px solid var(--bubble-border-color);
+				border-radius: 6px;
+				
+				line-height: 35px;
+				font-size: 16px;
+				font-weight: bold;
+				text-align: center;
+				
+				color: var(--body-text-color);
+				cursor: pointer;
+			}
+			
+			.clear { clear: both; }
+			.left { float: left; }
+			.right { float: right; }
+			
+			div.button.highlight {
+				font-weight: bold;
+				color: var(--highlight-color);
+			}
+			
+		</style>
+		
+		<script>
+			var $ = function(query) { return document.querySelector(query); };
+			var $$ = function(query) { return Array.from(document.querySelectorAll(query)); };
+			
+			function parse_query_string(url) {
+				// parse query string into key/value pairs and return as object
+				var query = {}; 
+				url.replace(/^.*\?/, '').replace(/([^\=]+)\=([^\&]*)\&?/g, function(match, key, value) {
+					query[key] = decodeURIComponent(value);
+					if (query[key].match(/^\-?\d+$/)) query[key] = parseInt(query[key]);
+					else if (query[key].match(/^\-?\d*\.\d+$/)) query[key] = parseFloat(query[key]);
+					return ''; 
+				} );
+				return query; 
+			};
+			
+			function compose_query_string(params) {
+				// compose query string
+				var url = '';
+				for (var key in params) {
+					url += (url.match(/\?/) ? '&' : '?') + key + '=' + encodeURIComponent(params[key]);
+				}
+				return url;
+			};
+			
+			var app = {
+				query: parse_query_string( location.href ),
+				
+				run: function() {
+					if (window.navigator.standalone || this.query.test) {
+						$('#app').style.display = 'flex';
+						
+						app.showInfo();
+						
+						$("input[type='file']").addEventListener('change', function(event) {
+							if (this.files && this.files[0]) app.showPreview( this.files[0] );
+						}, false);
+					}
+					else {
+						$('#splash').style.display = 'flex';
+					}
+				},
+				
+				showInfo: function() {
+					// show main app content
+					var html = '';
+					
+					html += '<div class="info_label">Server</div>';
+					html += '<div class="info_value">' + app.query.host + '</div>';
+					
+					html += '<div class="info_label">Channel</div>';
+					html += '<div class="info_value">' + app.query.chan + '</div>';
+					
+					html += '<div class="info_label">Nickname</div>';
+					html += '<div class="info_value">' + app.query.nick + '</div>';
+					
+					$('#app_header').style.display = 'block';
+					$('#app_content').innerHTML = html;
+				},
+				
+				showPreview: function(file) {
+					// show image preview and allow user to enter a caption if they want
+					this.file = file;
+					
+					// load local file client-side
+					var url_creator = window.URL || window.webkitURL || window.mozURL || window.msURL;
+					var object_url = url_creator.createObjectURL( file );
+					var img = null;
+					
+					if (file.type.match(/image/)) {
+						img = new Image();
+						img.src = object_url;
+					}
+					else if (file.type.match(/video/)) {
+						img = document.createElement('video');
+						img.src = object_url;
+						img.setAttribute( 'autoplay', 'autoplay' );
+						img.setAttribute( 'playsinline', 'playsinline' );
+					}
+					else {
+						img = document.createElement('div');
+						img.innerHTML = '(No preview available)';
+					}
+					
+					var html = '';
+					html += '<div style="width:80vw;">';
+					
+					html += '<div class="info_label">Preview</div>';
+					html += '<div class="info_value" id="d_img_preview"></div>';
+					
+					html += '<div class="info_label">Caption</div>';
+					html += '<div class="info_value"><textarea id="fe_caption" class="form_input" placeholder="Optional caption here..."></textarea></div>';
+					
+					html += '<div style="margin-top:20px;">';
+					html += '<div class="button left" onClick="app.showInfo();">Cancel</div>';
+					html += '<div class="button right highlight" onClick="app.upload();">Upload</div>';
+					html += '<div class="clear"></div>';
+					html += '</div>';
+					
+					html += '</div>';
+					
+					$('#app_header').style.display = 'none';
+					$('#app_content').innerHTML = html;
+					$('#d_img_preview').appendChild( img );
+				},
+				
+				upload: function(file) {
+					// upload
+					$('#app_header').style.display = 'block';
+					if (!file) file = this.file;
+					
+					// save caption
+					this.caption = $('#fe_caption').value;
+					
+					if (app.resetTimer) {
+						clearTimeout( app.resetTimer );
+						delete app.resetTimer;
+					}
+					
+					var html = '';
+					html += '<div class="progress_bar_container" style="margin:0 auto 0 auto;">';
+						html += '<div class="progress_bar_inner" style="width:0px;"></div>';
+					html += '</div>';
+					$('#app_content').innerHTML = html;
+					
+					var url = '/api/app/upload_file' + compose_query_string({
+						api_key: app.query.auth,
+						orient: 1,
+						convert: 1
+						// webcam: app.query.nick
+					});
+					var http = new XMLHttpRequest();
+					
+					http.upload.addEventListener( 'progress', function(e) {
+						if (e.lengthComputable) {
+							var amount = e.loaded / e.total;
+							app.updateProgress(amount);
+						}
+					}, false );
+					
+					var form = new FormData();
+					form.append('file1', file);
+					
+					http.onreadystatechange = function() {
+						if (http.readyState == 4) {
+							if ((http.status >= 200) && (http.status < 400)) {
+								// http codes 200 thru 399 are generally considered "successful"
+								var json = null;
+								try { json = JSON.parse( http.responseText ); }
+								catch (err) { app.doError(err); }
+								if (json.code) return app.doError( json.description );
+								app.sendMessage( json.url );
+							}
+							else {
+								// http codes out of the 200 - 399 range are generally considered errors
+								if (response.code) {
+									app.doError("Error uploading file: HTTP " + http.status + " " + http.statusText);
+								}
+								else {
+									app.doError("Error uploading file: Internal Error");
+								}
+							} // error
+						} // readyState 4
+					}; // onreadystatechange
+					
+					try {
+						http.open('POST', url, true);
+						http.send(form);
+					}
+					catch (e) {
+						app.doError("Error uploading file: " + e.toString());
+					}
+					
+					$("input[type='file']").value = '';
+				},
+				
+				updateProgress: function(amount) {
+					// update upload progress
+					var px = Math.floor( amount * 300 );
+					$('div.progress_bar_inner').style.width = '' + px + 'px';
+				},
+				
+				sendMessage: function(media_url) {
+					// send final message to chat
+					this.updateProgress(1.0);
+					
+					var thing = "a file";
+					if (media_url.match(/\.(jpg|jpe|jpeg|gif|png|webp|bmp)$/i)) thing = "a photo";
+					else if (media_url.match(/\.(mp4|m4v|mov)$/i)) thing = "a video";
+					
+					var msg = "**" + app.query.nick + "** posted " + thing + ":";
+					if (this.caption) msg += " " + this.caption;
+					msg += "<br/>" + media_url;
+					
+					var url = '/api/app/say' + compose_query_string({
+						api_key: app.query.auth,
+						channel_id: app.query.chan,
+						content: msg,
+						nolight: 1,
+						tags: "snapshot"
+					});
+					
+					fetch(url).then( function(res) {
+						if (!res.ok) throw new Error("HTTP " + res.status + " " + res.statusText);
+						return res.json();
+					} )
+					.then(function(json) {
+						// all done!
+						var html = '<h1>Upload complete!</h1>';
+						$('#app_content').innerHTML = html;
+						
+						app.resetTimer = setTimeout( function() {
+							delete app.resetTimer;
+							app.showInfo(); 
+						}, 3000 );
+					} )
+					.catch( function(err) {
+						// API error, probably ACL
+						app.doError(err);
+					} );
+				},
+				
+				doError: function(msg) {
+					// show error message
+					var html = '';
+					html += '<h1 style="color:red">Sorry, an error occurred.</h1>';
+					html += '<h2>' + msg + '</h2>';
+					$('#app_header').style.display = 'block';
+					$('#app_content').innerHTML = html;
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="splash" style="display:none">
+			<div style="padding-top:20px">
+				<p><img src="icons/icon_512x512.png" width="96"></p>
+				<h1>EmoYak Uploader</h1>
+				<h2>Add shortcut to home screen</h2>
+				
+				<div class="instruction">
+					<p><img src="images/1-share-toolbar.png" width="320"></p>
+					<h3><strong>1.</strong> Tap &nbsp;<img src="images/share-icon.png" height="20px">&nbsp; on the bottom of the screen.</h3>
+				</div>
+				
+				<div class="instruction">
+					<p><img src="images/2-add-to-home-screen.png" width="320"></p>
+					<h3><strong>2.</strong> Tap &ldquo;Add to Home Screen&rdquo;.</h3>
+				</div>
+				
+				<div class="instruction">
+					<p><img src="images/3-add-button.png" width="320"></p>
+					<h3><strong>3.</strong> Tap &ldquo;Add&rdquo;.</h3>
+				</div>
+			</div>
+		</div>
+		<div id="app" class="center-me" style="display:none">
+			<div>
+				<div id="app_header" class="tap" style="position:relative">
+					
+					<input type="file" name="file1" accept="image/*,video/*"/>
+					
+					<p><img src="images/camera-icon.png" width="128"></p>
+					<h2>Tap to upload a photo or video</h2>
+				</div>
+				
+				<div id="app_content">
+					
+				</div>
+			</div>
+		</div>
+		
+		<script> app.run(); </script>
+	</body>
+</html>
